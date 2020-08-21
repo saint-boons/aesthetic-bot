@@ -1,0 +1,6 @@
+{
+	"prefix": "/",
+    "consoleInfoPrefix": "INFO FRA >",
+    "consoleWarnPrefix": "WARN FRA >",
+    "consoleErrorPrefix": "ERROR FRA >"
+}
