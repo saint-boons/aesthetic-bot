@@ -44,6 +44,6 @@ DISCORD_TOKEN=(BOT TOKEN)
 3. Create an application
 4. Go to deploy and click GitHub
 5. Connect your GitHub account and select the fork you created (turn on automatic deploys)
-6. Since the bot is ready to be hosted with Heroku you just need to turn off `web` and turn on the `worker` under `Resources`
+6. Since the bot is ready to be hosted with Heroku, you just need to turn off `web` and turn on the `worker` under `Resources`
 
-*Procfile already exsists*
+*Procfile already exists*
