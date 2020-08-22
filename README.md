@@ -6,8 +6,8 @@ FRENCH's Assistant (caps because that's my name...) is my first Discord bot ever
 
 - Language: discord.js *(node.js)*
 - Version: *in pakage.json*
-- Testing server: https://discord.gg/HGcfKEY
-- Dependicies: 
+- Testing server: https://discord.gg/u69Jm4T
+- Dependencies: 
   - discord.js
   - chalk
   - dotenv
