@@ -17,9 +17,9 @@ FRENCH's Assistant (caps because that's my name...) is my first Discord bot ever
 ### Before you start
 
 1. Go to https://discord.com/developers/applications
-2. Create an application and give it a name *(and a profile pictue if you want)*
+2. Create an application and give it a name *(and a profile picture if you want)*
 3. On the side click on `Bot` and click `New Bot`
-4. Copy the bot token and save it for later ***(DO NOT SHARE THE TOKEN TO ANYONE)***
+4. Copy the bot token and save it for later ***(DO NOT SHARE THE TOKEN WITH ANYONE)***
 5. Make sure you have node.js v.12 installed *(https://nodejs.org/)*
 
 ### Setting up the files
