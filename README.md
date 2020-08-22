@@ -29,13 +29,13 @@ FRENCH's Assistant (caps because that's my name...) is my first Discord bot ever
 ```
 DISCORD_TOKEN=(BOT TOKEN)
 ```
-*replace `(BOT TOKEN)` with your actual Discord bot token that you got earlier on the Discord developer portal*
+*replace `(BOT TOKEN)` with your own Discord bot token that you got earlier from the Discord developer portal*
 
 3. Open up terminal *(or cmd)*
 4. Run `cd <file path to bot folder>`
 5. Run npm start
 
-*steps 3-5 if self hosted*
+*steps 3-5 if self-hosted*
 
 ### If hosted on Heroku:
 
