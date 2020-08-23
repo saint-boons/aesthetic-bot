@@ -1,6 +1,6 @@
 {
   "name": "frenchs-assistant",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "FRENCH's Assistant, a custom bot coded by FrenchBones",
   "main": "index.js",
   "scripts": {
