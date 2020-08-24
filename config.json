@@ -2,5 +2,7 @@
 	"prefix": "/",
     "consoleInfoPrefix": "INFO FRA >",
     "consoleWarnPrefix": "WARN FRA >",
-    "consoleErrorPrefix": "ERROR FRA >"
+    "consoleErrorPrefix": "ERROR FRA >",
+    "logMessages": "true",
+    "logInvalidCommands": "true"
 }
