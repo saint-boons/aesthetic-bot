@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'clear',
-	description: 'Delete multiple messages.',
+    description: 'Delete multiple messages.',
     args: true,
     usage: '<number (1-99)>',
     guildOnly: true,
