@@ -1,6 +1,6 @@
-# FRENCH's Assistant (frenchs-assistant)
+# Aesthetic BOT (aesthetic-bot)
 
-FRENCH's Assistant (caps because that's my name...) is my first Discord bot ever. This bot is made for my main discord server (https://discord.gg/7T24Mrw) that is used for my socials and also just a general community.
+Aesthetic BOT is my first Discord bot ever. This bot is made for my main discord server (https://discord.gg/7T24Mrw) that is used for my socials and also just a general community.
 
 # Bot info
 
