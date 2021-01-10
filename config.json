@@ -1,8 +1,8 @@
 {
 	"prefix": "/",
-    "consoleInfoPrefix": "INFO FRA >",
-    "consoleWarnPrefix": "WARN FRA >",
-    "consoleErrorPrefix": "ERROR FRA >",
+    "consoleInfoPrefix": "INFO >",
+    "consoleWarnPrefix": "WARN >",
+    "consoleErrorPrefix": "ERROR >",
     "logMessages": "true",
     "logInvalidCommands": "true"
 }

@@ -58,7 +58,7 @@ client.on('message', message => {
 
 client.once('ready', () => {
     console.log(info(consoleInfoPrefix), `Loged on as ` + highlight(`${client.user.tag}`) + ` in ` + highlight(`${client.guilds.cache.size}`) + ` server(s) at ` + highlight(`${client.readyAt}`) + `.`);
-	console.log(info(consoleInfoPrefix), `Bot created by ` + highlight(`FrenchBones`) + ` ` + url(`(https://frenchbones.github.io)`) + `. Please give credit when using my bot!`)
+	console.log(info(consoleInfoPrefix), `Bot created by ` + highlight(`FrenchBones`) + ` ` + url(`(https://frenchbones.net)`) + `. Please give credit when using my bot!`)
 	console.log(info(consoleInfoPrefix), `Bot version:`, highlight(version), `\n`)
 });
 
