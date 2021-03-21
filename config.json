@@ -4,5 +4,8 @@
     "consoleWarnPrefix": "WARN >",
     "consoleErrorPrefix": "ERROR >",
     "logMessages": "true",
-    "logInvalidCommands": "true"
+    "logInvalidCommands": "true",
+    "embedColour": "ffffff",
+    "embedWarnColour": "ffa500",
+    "embedErrorColour": "ff0000"
 }
