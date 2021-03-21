@@ -33,9 +33,9 @@ DISCORD_TOKEN=(BOT TOKEN)
 
 3. Open up terminal *(or cmd)*
 4. Run `cd <file path to bot folder>`
-5. Run npm start
+5. Run `npm start`
 
-*steps 3-5 if self-hosted*
+*steps 3-5 if self-hosted, otherwise see below*
 
 ### If hosted on Heroku:
 
