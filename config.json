@@ -5,7 +5,9 @@
     "consoleErrorPrefix": "ERROR >",
     "logMessages": "true",
     "logInvalidCommands": "true",
-    "embedColour": "ffffff",
-    "embedWarnColour": "ffa500",
-    "embedErrorColour": "ff0000"
+    "embedColor": "#ffffff",
+    "embedWarnColor": "#ffa500",
+    "embedErrorColor": "#ff0000",
+    "embedFooterText": "Aesthetic BOT",
+    "embedFooterIcon": "https://i.imgur.com/wz6faLJ.jpg"
 }
