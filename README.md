@@ -5,7 +5,7 @@ Aesthetic BOT is my first Discord bot ever. This bot is made for my main discord
 # Bot info
 
 - Language: discord.js *(node.js)*
-- Version: *in pakage.json*
+- Version: *in package.json*
 - Testing server: https://discord.gg/u69Jm4T
 - Dependencies: 
   - discord.js
@@ -33,9 +33,9 @@ DISCORD_TOKEN=(BOT TOKEN)
 
 3. Open up terminal *(or cmd)*
 4. Run `cd <file path to bot folder>`
-5. Run npm start
+5. Run `npm start`
 
-*steps 3-5 if self-hosted*
+*steps 3-5 if self-hosted, otherwise see below*
 
 ### If hosted on Heroku:
 
