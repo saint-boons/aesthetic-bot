@@ -5,7 +5,7 @@ Aesthetic BOT is my first Discord bot ever. This bot is made for my main discord
 # Bot info
 
 - Language: discord.js *(node.js)*
-- Version: *in pakage.json*
+- Version: *in package.json*
 - Testing server: https://discord.gg/u69Jm4T
 - Dependencies: 
   - discord.js
