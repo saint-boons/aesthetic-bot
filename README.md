@@ -11,6 +11,7 @@ Aesthetic BOT is my first Discord bot ever. This bot is made for my main discord
   - discord.js
   - chalk
   - dotenv
+  - nodemon
 
 # Installation
 
@@ -36,6 +37,7 @@ DISCORD_TOKEN=(BOT TOKEN)
 5. Run `npm start`
 
 *steps 3-5 if self-hosted, otherwise see below*
+*setp 5 runs a nodemon*
 
 ### If hosted on Heroku:
 
