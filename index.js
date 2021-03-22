@@ -27,7 +27,7 @@ client.on('ready', async () => {
 	console.log(infoPrefix(consoleInfoPrefix), `Bot version:`, highlight(version), `\n`)
 
     //Command handler
-    const baseFile = 'command-base.js'
+    const baseFile = 'command-handler.js'
     const commandBase = require(`./commands/${baseFile}`)
 
     const readCommands = (dir) => {
