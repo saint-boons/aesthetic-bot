@@ -27,5 +27,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
       env:
         DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+    - run: echo $DISCORD_TOKEN
     - run: npm i
     - run: npm start
