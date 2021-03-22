@@ -1,13 +1,13 @@
 {
-	"prefix": "/",
+	"prefix": "-",
     "consoleInfoPrefix": "INFO >",
     "consoleWarnPrefix": "WARN >",
     "consoleErrorPrefix": "ERROR >",
     "logMessages": "true",
     "logInvalidCommands": "true",
-    "embedColor": "#ffffff",
-    "embedWarnColor": "#ffa500",
-    "embedErrorColor": "#ff0000",
+    "embedColor": "WHITE",
+    "embedWarnColor": "ORANGE",
+    "embedErrorColor": "RED",
     "embedFooterText": "Aesthetic BOT",
     "embedFooterIcon": "https://i.imgur.com/wz6faLJ.jpg"
 }
