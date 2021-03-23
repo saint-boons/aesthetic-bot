@@ -7,7 +7,7 @@ module.exports = {
 	callback: (client, message, arguments, text) => {
 		const serverInfoEmbed = new Discord.MessageEmbed()
 		    .setColor(embedColor)
-		    .setTitle('Server info')
+		    .setTitle('Server Info')
 		    .setDescription('Here are some info on this server.')
 		    .addFields(
 			    { name: 'Name', value: `${message.guild.name}`, inline: false },

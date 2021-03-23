@@ -68,7 +68,7 @@ module.exports = (client, commandOptions) => {
         commands = [commands]
     }
 
-    console.log(infoPrefix(consoleInfoPrefix), `Registering command: "${commands[0]}"`)
+    console.log(infoPrefix(consoleInfoPrefix), `Registering command:`, highlight(commands[0]))
 
     // Convert strong to array - permissions
     if (permissions.length) {

@@ -3,8 +3,8 @@ const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFoote
 
 module.exports = {
     commands: ['ping'],
-    callback: (client, message, sent, agruments, text) => {
-        const ping = sent.createdTimestamp - message.createdTimestamp
+    callback: (client, message, agruments, text) => {
+        const ping = new Date().getTime() - message.createdTimestamp;
 	    const pingEmbed = new Discord.MessageEmbed()
 		    .setColor(embedColor)
 		    .setTitle('Ping Results')

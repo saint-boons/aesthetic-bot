@@ -10,14 +10,14 @@ module.exports = {
                 .setColor(embedColor)
                 .setFooter(embedFooterText, embedFooterIcon)
             if (!message.mentions.users.size) {
-                avatarEmbed.setTitle('Your avatar')
+                avatarEmbed.setTitle('Your Avatar')
                 avatarEmbed.addField('URL', `${message.author.displayAvatarURL({ format: "png", dynamic: true })}`, false)
                 avatarEmbed.setImage(message.author.displayAvatarURL({ format: "png", dynamic: true }))
                 message.channel.send(avatarEmbed)
                 return
             }
             const otherAvatar = message.mentions.users.map(user => {
-                avatarEmbed.setTitle(`${user.username}'s avatar`)
+                avatarEmbed.setTitle(`${user.username}'s Avatar`)
                 avatarEmbed.addField('URL', `${user.displayAvatarURL({ format: "png", dynamic: true })}`, false)
                 avatarEmbed.setImage(user.displayAvatarURL({ format: "png", dynamic: true }))
                 return
