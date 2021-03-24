@@ -3,8 +3,9 @@ const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFoote
 
 module.exports = {
     commands: ['avatar', 'icon', 'pfp'],
-    expectedArgs: '<user> or NONE',
+    expectedArgs: '<user> / none',
     maxArgs: 1,
+    description: "Get someone else's discord avatar.",
     callback: (client, message, user, agruments, text) => {
         const avatarEmbed = new Discord.MessageEmbed()
                 .setColor(embedColor)

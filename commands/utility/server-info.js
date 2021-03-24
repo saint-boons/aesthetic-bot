@@ -4,6 +4,7 @@ const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFoote
 module.exports = {
 	commands: ['server-info', 'serverinfo', 'guild-info', 'guildinfo'],
 	maxArgs: 0,
+	description: "Give some information about the server.",
 	callback: (client, message, arguments, text) => {
 		const serverInfoEmbed = new Discord.MessageEmbed()
 		    .setColor(embedColor)

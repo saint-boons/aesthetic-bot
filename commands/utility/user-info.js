@@ -3,8 +3,9 @@ const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFoote
 
 module.exports = {
 	commands: ['user-info', 'userinfo'],
-    expectedArgs: '<user> or NONE',
+    expectedArgs: '<user> / none',
     maxArgs: 1,
+    description: "Give some information about a user or yourself.",
 	callback: (client, message, arguments, text) => {
         const userInfoEmbed = new Discord.MessageEmbed()
                 .setColor(embedColor)

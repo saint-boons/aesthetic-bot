@@ -5,6 +5,7 @@ const { version } = require('../../package.json')
 module.exports = {
 	commands: ['bot-info', 'botinfo'],
     maxArgs: 0,
+    description: "Gives some information on the bot.",
 	callback: (client, message, arguments, text) => {
         if (message.client.uptime < 60000) {
             uptimeFormated = Math.round(message.client.uptime / 1000) + ' second(s)'

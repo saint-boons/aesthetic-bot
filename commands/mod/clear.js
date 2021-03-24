@@ -7,19 +7,20 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     requiredRoles: ['Mod'],
+    description: "Clear a certain number of messages at once.",
 	callback: (client, message, arguments, text) => {
 		if (arguments == 'all') {
             message.channel.messages.fetch().then(results => {
-                message.channel.bulkDelete(results)
+                message.channel.bulkDelete(results, true)
             })
         } else {
             let nMessages = parseInt(arguments)
             
-            if (isNaN(nMessages) || (nMessages < 1 || nMessages > 100)) {
+            if (isNaN(nMessages) || (nMessages < 1 || nMessages > 99)) {
                 const syntaxErrEmbed = new Discord.MessageEmbed()
 		            .setColor(embedErrorColor)
 		            .setTitle('Syntax Error')
-		            .setDescription(`Expecting a \`number (1-1000)\` or \`all\` as an argument`)
+		            .setDescription(`Expecting a \`number (1-99)\` or \`all\` as an argument`)
 		            .setFooter(embedFooterText, embedFooterIcon);
 
 	            message.channel.send(syntaxErrEmbed);
@@ -29,10 +30,13 @@ module.exports = {
                     const successEmbed = new Discord.MessageEmbed()
 		                .setColor(embedColor)
 		                .setTitle('Success')
-		                .setDescription(`**${nMessages}** messages were deleted!`)
+		                .setDescription(`**${nMessages}** message(s) cleared!`)
 		                .setFooter(embedFooterText, embedFooterIcon);
 
-	                message.channel.send(successEmbed);
+	                message.channel.send(successEmbed)
+                    .then(msg => {
+                        setTimeout(() => msg.delete(), 3000)
+                    })
                 } catch {
                     const syntaxErrEmbed = new Discord.MessageEmbed()
 		                .setColor(embedErrorColor)

@@ -3,6 +3,7 @@ const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFoote
 
 module.exports = {
     commands: ['ping'],
+	description: "Check the bot's and api latency.",
     callback: (client, message, agruments, text) => {
         const ping = new Date().getTime() - message.createdTimestamp;
 	    const pingEmbed = new Discord.MessageEmbed()
@@ -10,7 +11,7 @@ module.exports = {
 		    .setTitle('Ping Results')
 		    .setDescription('Here are the detailed ping results!')
 		    .addFields(
-			    { name: 'BOT Latency', value: `**${ping}** ms`, inline: true },
+			    { name: 'Bot Latency', value: `**${ping}** ms`, inline: true },
 			    { name: 'API Latency', value: `**${client.ws.ping}** ms`, inline: true },
 		    )
 		    .setFooter(embedFooterText, embedFooterIcon);
