@@ -5,6 +5,7 @@ const config = require('./config.json')
 const loadCommands = require('./commands/load-commands')
 const { consoleInfoPrefix, consoleWarnPrefix, consoleErrorPrefix } = require('./config.json')
 const { version } = require('./package.json')
+const { serverID } = require('./config.json')
 
 // Env
 require('dotenv').config();
@@ -24,7 +25,7 @@ client.on('ready', async () => {
 	console.log(infoPrefix(consoleInfoPrefix), `Bot created by ` + highlight(`FrenchBones`) + ` ` + url(`(https://frenchbones.net)`) + `. Please give credit when using my bot!`)
 	console.log(infoPrefix(consoleInfoPrefix), `Bot version:`, highlight(version), `\n`)
 
-    // Start up commands
+    // Status 
     client.user.setPresence({
         status: `dnd`,
         activity: {

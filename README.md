@@ -1,17 +1,20 @@
 # Aesthetic BOT (aesthetic-bot)
 
-Aesthetic BOT is my first Discord bot ever. This bot is made for my main discord server (https://discord.gg/7T24Mrw) that is used for my socials and also just a general community.
+Aesthetic BOT is my first Discord bot. This bot is a general purpose bot. *the to-do list is in the testing discord*
+
+Join my discord server here https://discord.gg/7T24Mrw
+that is used for my socials and also just a general community.
 
 # Bot info
 
-- Language: discord.js *(node.js)*
+- Language: discord.js *(node.js, javascript)*
 - Version: *in package.json*
 - Testing server: https://discord.gg/u69Jm4T
 - Dependencies: 
   - discord.js
   - chalk
   - dotenv
-  - nodemon
+  - nodemon *(optional)*
 
 # Installation
 
@@ -22,6 +25,11 @@ Aesthetic BOT is my first Discord bot ever. This bot is made for my main discord
 3. On the side click on `Bot` and click `New Bot`
 4. Copy the bot token and save it for later ***(DO NOT SHARE THE TOKEN WITH ANYONE)***
 5. Make sure you have node.js v.12 installed *(https://nodejs.org/)*
+6. Invite the bot in your discord server with this link:
+```
+https://discord.com/api/oauth2/authorize?client_id=CLIENT ID HERE&permissions=8&scope=bot%20applications.commands
+```
+*make sure change `CLIENT ID HERE` you keep `&permissions=8&scope=bot%20applications.commands` after the Client ID`*
 
 ### Setting up the files
 
@@ -34,10 +42,11 @@ DISCORD_TOKEN=(BOT TOKEN)
 
 3. Open up terminal *(or cmd)*
 4. Run `cd <file path to bot folder>`
-5. Run `npm start`
+5. If directory `node_modules` exisits, delete it
+6. Run `npm start`
 
 *steps 3-5 if self-hosted, otherwise see below*
-*setp 5 runs a nodemon*
+*run `npm test` to run the bot with nodemon*
 
 ### If hosted on Heroku:
 
