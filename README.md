@@ -29,7 +29,7 @@ that is used for my socials and also just a general community.
 ```
 https://discord.com/api/oauth2/authorize?client_id=CLIENT ID HERE&permissions=8&scope=bot%20applications.commands
 ```
-*make sure change `CLIENT ID HERE` you keep `&permissions=8&scope=bot%20applications.commands` after the Client ID`*
+*change `CLIENT ID HERE` make sure you keep `&permissions=8&scope=bot%20applications.commands` after the `Client ID`*
 
 ### Setting up the files
 
