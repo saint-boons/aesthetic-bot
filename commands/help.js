@@ -16,7 +16,7 @@ module.exports = {
 
 		for (const command of commands) {
 			// Perm check
-			let permissions = command.permission
+			let permissions = command.permissions
 			if (permissions) {
 				let hasPermission = true
 				if (typeof permissions === 'string') {
@@ -32,6 +32,24 @@ module.exports = {
 					continue
 				}
 			}
+			// Role check
+			let requiredRoles = command.requiredRoles
+			if (requiredRoles) {
+				let hasRequiredRole = true
+				if (typeof requiredRoles === 'string') {
+					requiredRoles = [requiredRoles]
+				}
+				for (const requiredRole of requiredRoles) {
+					if (!message.member.roles.cache.has(requiredRole)) {
+						hasRequiredRole = false
+						break
+					}
+				}
+				if (!hasRequiredRole) {
+					continue
+				}
+			}
+
 			// Format
 			const mainCommand = typeof command.commands === 'string' ? command.commands : command.commands[0]
 			const args = command.expectedArgs ? ` ${command.expectedArgs}` : ''
