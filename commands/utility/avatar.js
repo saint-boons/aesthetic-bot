@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../../config.json')
+const config = require('../../config.json')
 
 module.exports = {
     commands: ['avatar', 'icon', 'pfp'],
@@ -8,8 +8,8 @@ module.exports = {
     description: "Get someone else's discord avatar.",
     callback: (client, message, user, agruments, text) => {
         const avatarEmbed = new Discord.MessageEmbed()
-                .setColor(embedColor)
-                .setFooter(embedFooterText, embedFooterIcon)
+                .setColor(config.embedColor)
+                .setFooter(config.embedFooterText, config.embedFooterIcon)
             if (!message.mentions.users.size) {
                 avatarEmbed.setTitle('Your Avatar')
                 avatarEmbed.addField('URL', `${message.author.displayAvatarURL({ format: "png", dynamic: true })}`, false)

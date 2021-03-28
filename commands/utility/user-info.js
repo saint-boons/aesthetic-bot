@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../../config.json')
+const config = require('../../config.json')
 
 module.exports = {
 	commands: ['user-info', 'userinfo'],
@@ -8,8 +8,8 @@ module.exports = {
     description: "Give some information about a user or yourself.",
 	callback: (client, message, arguments, text) => {
         const userInfoEmbed = new Discord.MessageEmbed()
-                .setColor(embedColor)
-                .setFooter(embedFooterText, embedFooterIcon)
+                .setColor(config.embedColor)
+                .setFooter(config.embedFooterText, config.embedFooterIcon)
             if (!message.mentions.users.size) {
                 userInfoEmbed.setTitle('Your User Info')
                 userInfoEmbed.addField('Usnername', `${message.author.username}`, false)

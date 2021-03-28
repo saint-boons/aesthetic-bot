@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../../config.json')
+const config = require('../../config.json')
 
 module.exports = {
     commands: ['unban', 'unpermban', 'unperm-ban', 'unpermaban', 'unperma-ban', 'untempban', 'untempoban', 'untemp-ban', 'untempo-ban', 'untemporaryban', 'untemporary-ban'],
@@ -12,10 +12,10 @@ module.exports = {
         let memberTag = arguments[0].tag
         if (memberTag) {
             const unbanErrorEmbed = new Discord.MessageEmbed()
-                .setColor(embedErrorColor)
+                .setColor(config.embedErrorColor)
                 .setTitle('Unban Error')
                 .setDescription(`User <@${memberID}> \`${memberID}\` cannot be unbanned!\n*They are currently in this server.*`)
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(unbanErrorEmbed);
             return
         }
@@ -26,39 +26,39 @@ module.exports = {
         }
         if (memberID === message.author.id) {
             const unbanErrorEmbed = new Discord.MessageEmbed()
-                .setColor(embedErrorColor)
+                .setColor(config.embedErrorColor)
                 .setTitle('Unban Error')
                 .setDescription(`You cannot unban yourself!`)
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(unbanErrorEmbed);
             return
         }
         if (!memberID) {
             message.guild.members.unban(memberID).catch(err => {
                 const unbanErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(embedErrorColor)
+                    .setColor(config.embedErrorColor)
                     .setTitle('Error')
                     .setDescription(`${err}`)
-                    .setFooter(embedFooterText, embedFooterIcon);
+                    .setFooter(config.embedFooterText, config.embedFooterIcon);
                 message.channel.send(unbanErrorEmbed);
                 return
             })
             const unbanEmbed = new Discord.MessageEmbed()
-                .setColor(embedColor)
+                .setColor(config.embedColor)
                 .setTitle('User Unbanned')
                 .setDescription(`User <@${memberID}> was unbanned!`)
                 .addFields(
                     { name: 'Unbanned By', value: `${message.author}`, inline: true },
                     { name: 'Reason', value: `${reason}`, inline: false },
                 )
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(unbanEmbed);
         } else {
             const unbanErrorEmbed = new Discord.MessageEmbed()
-                .setColor(embedErrorColor)
+                .setColor(config.embedErrorColor)
                 .setTitle('Unban Error')
                 .setDescription(`User <@${memberID}> \`${memberID}\` cannot be unbanned!\n*They are currently in this server.*`)
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(unbanErrorEmbed);
         }
     },

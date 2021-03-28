@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../../config.json')
+const config = require('../../config.json')
 
 module.exports = {
     commands: ['status', 'botstatus', 'bot-status'],
@@ -28,10 +28,10 @@ module.exports = {
                 break
             default:
                 const typeErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(embedErrorColor)
+                    .setColor(config.embedErrorColor)
                     .setTitle('Error')
                     .setDescription(`The type \`${arguments[0]}\`does not exist!\nPossible options are: \`playing\`, \`watching\`, \`listening\`, \`streaming\``)
-                    .setFooter(embedFooterText, embedFooterIcon);
+                    .setFooter(config.embedFooterText, config.embedFooterIcon);
                 message.channel.send(typeErrorEmbed)
                 return
         }
@@ -54,15 +54,15 @@ module.exports = {
                 break
             default:
                 const statusErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(embedErrorColor)
+                    .setColor(config.embedErrorColor)
                     .setTitle('Error')
                     .setDescription(`The status \`${arguments[1]}\`does not exist!\nPossible options are: \`online\`, \`idle\`, \`dnd\`, \`invisible\`\n*\`dnd\` is Do Not Disturb*`)
-                    .setFooter(embedFooterText, embedFooterIcon);
+                    .setFooter(config.embedFooterText, config.embedFooterIcon);
                 message.channel.send(statusErrorEmbed)
                 return
         }
         const statusEmbed = new Discord.MessageEmbed()
-            .setColor(embedColor)
+            .setColor(config.embedColor)
             .setTitle('Status Changed')
             .setDescription(`The bot's status was changed.`)
             .addFields(
@@ -70,7 +70,7 @@ module.exports = {
                 { name: 'Status', value: `${embedStatus}`, inline: false },
                 { name: 'Value', value: `${value}`, inline: false },
             )
-            .setFooter(embedFooterText, embedFooterIcon);
+            .setFooter(config.embedFooterText, config.embedFooterIcon);
 
         client.user.setPresence({
             status: `${status}`,

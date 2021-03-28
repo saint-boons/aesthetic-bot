@@ -1,11 +1,5 @@
 const Discord = require('discord.js');
-const {
-    embedColor,
-    embedWarnColor,
-    embedErrorColor,
-    embedFooterText,
-    embedFooterIcon
-} = require('../../config.json')
+const config = require('../../config.json')
 
 module.exports = {
     commands: ['embed'],
@@ -19,7 +13,7 @@ module.exports = {
         const content = arguments.slice(2).join(" ")
         const textEmbed = new Discord.MessageEmbed()
         if (color == 'default') {
-            textEmbed.setColor(`${embedColor}`)
+            textEmbed.setColor(`${config.embedColor}`)
         } else {
             if (color.length == 6) {
                 color = '#' + `${color}`
@@ -29,17 +23,17 @@ module.exports = {
                 textEmbed.setColor(`${color}`)
             } else {
                 const syntaxErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(`${embedErrorColor}`)
+                    .setColor(`${config.embedErrorColor}`)
                     .setTitle(`Syntax Error`)
                     .setDescription(`Expecting a valid hex colour code or \`default\`!`)
-                    .setFooter(embedFooterText, embedFooterIcon);
+                    .setFooter(config.embedFooterText, config.embedFooterIcon);
                 message.channel.send(syntaxErrorEmbed)
                 return
             }
         }
         textEmbed.setTitle(`${title}`)
         textEmbed.setDescription(`${content}`)
-        textEmbed.setFooter(embedFooterText, embedFooterIcon)
+        textEmbed.setFooter(config.embedFooterText, config.embedFooterIcon)
         message.delete()
         message.channel.send(textEmbed)
     },

@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../../config.json')
+const config = require('../../config.json')
 
 module.exports = {
 	commands: ['server-info', 'serverinfo', 'guild-info', 'guildinfo'],
@@ -7,7 +7,7 @@ module.exports = {
 	description: "Give some information about the server.",
 	callback: (client, message, arguments, text) => {
 		const serverInfoEmbed = new Discord.MessageEmbed()
-		    .setColor(embedColor)
+		    .setColor(config.embedColor)
 		    .setTitle('Server Info')
 		    .setDescription('Here are some info on this server.')
 		    .addFields(
@@ -16,7 +16,7 @@ module.exports = {
 				{ name: 'Server Creation Date', value: `${message.guild.createdAt}`, inline: false },
 				{ name: 'Server Region', value: `${message.guild.region}`, inline: false },
 		    )
-		    .setFooter(embedFooterText, embedFooterIcon);
+		    .setFooter(config.embedFooterText, config.embedFooterIcon);
 
 	    message.channel.send(serverInfoEmbed);
 	},

@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../../config.json')
+const config = require('../../config.json')
 const { version } = require('../../package.json')
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
             uptimeFormated = Math.round(message.client.uptime / 86400000) + ' day(s)'
         }
         const botInfoEmbed = new Discord.MessageEmbed()
-		    .setColor(embedColor)
+		    .setColor(config.embedColor)
 		    .setTitle('Bot Info')
 		    .setDescription('Here are some info on the bot.')
 		    .addFields(
@@ -30,7 +30,7 @@ module.exports = {
                 { name: 'Version', value: `v${version}`, inline: false },
 				{ name: 'Creator', value: `FrenchBones (https://frenchbones.net)`, inline: false },
 		    )
-		    .setFooter(embedFooterText, embedFooterIcon);
+		    .setFooter(config.embedFooterText, config.embedFooterIcon);
 
 	    message.channel.send(botInfoEmbed);
 	},

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
-const { prefix, consoleInfoPrefix, consoleWarnPrefix, consoleErrorPrefix, embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../config.json')
+const config = require('../config.json')
+
 // Chalk
 const chalk = require('chalk');
 const infoPrefix = chalk.black.bgWhite
@@ -68,7 +69,7 @@ module.exports = (client, commandOptions) => {
         commands = [commands]
     }
 
-    console.log(infoPrefix(consoleInfoPrefix), `Registering command:`, highlight(commands[0]))
+    console.log(infoPrefix(config.consoleInfoPrefix), `Registering command:`, highlight(commands[0]))
 
     // Convert strong to array - permissions
     if (permissions.length) {
@@ -84,15 +85,15 @@ module.exports = (client, commandOptions) => {
         const { member, content, guild } = message
 
         for (const alias of commands) {
-            if (content.toLowerCase().startsWith(`${prefix}${alias.toLowerCase()}`)) {
+            if (content.toLowerCase().startsWith(`${config.prefix}${alias.toLowerCase()}`)) {
                 // Perms check - permission
                 for (const permission of permissions) {
                     if (!member.hasPermission(permission)) {
                         const permErrEmbed = new Discord.MessageEmbed()
-		                        .setColor(embedErrorColor)
+		                        .setColor(config.embedErrorColor)
 		                        .setTitle('Insufficient Permission')
 		                        .setDescription(`${permissionError}`)
-		                        .setFooter(embedFooterText, embedFooterIcon);
+		                        .setFooter(config.embedFooterText, config.embedFooterIcon);
 
 	                        message.channel.send(permErrEmbed);
                         return
@@ -105,10 +106,10 @@ module.exports = (client, commandOptions) => {
                         
                         if (!role || !member.roles.cache.has(role.id)) {
                             const roleErrEmbed = new Discord.MessageEmbed()
-		                        .setColor(embedErrorColor)
+		                        .setColor(config.embedErrorColor)
 		                        .setTitle('Insufficient Permission')
 		                        .setDescription(`You must have \`${requiredRole}\` role to use this command.`)
-		                        .setFooter(embedFooterText, embedFooterIcon);
+		                        .setFooter(config.embedFooterText, config.embedFooterIcon);
 
 	                        message.channel.send(roleErrEmbed);
                             return
@@ -124,10 +125,10 @@ module.exports = (client, commandOptions) => {
                     maxArgs !== null && arguments.length > maxArgs
                 )) {
                     const syntaxErrEmbed = new Discord.MessageEmbed()
-		                .setColor(embedErrorColor)
+		                .setColor(config.embedErrorColor)
 		                .setTitle('Syntax Error')
-		                .setDescription(`Improper syntax. Use: \`${prefix}${alias} ${expectedArgs}\`\nNeed some help? Do: \`${prefix}help\``)
-		                .setFooter(embedFooterText, embedFooterIcon);
+		                .setDescription(`Improper syntax. Use: \`${config.prefix}${alias} ${expectedArgs}\`\nNeed some help? Do: \`${config.prefix}help\``)
+		                .setFooter(config.embedFooterText, config.embedFooterIcon);
 
 	                message.channel.send(syntaxErrEmbed);
                     return

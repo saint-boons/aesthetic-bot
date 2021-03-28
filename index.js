@@ -4,9 +4,7 @@ const client = new Discord.Client()
 
 const config = require('./config.json')
 const loadCommands = require('./commands/load-commands')
-const { consoleInfoPrefix, consoleWarnPrefix, consoleErrorPrefix } = require('./config.json')
 const { version } = require('./package.json')
-const { serverID } = require('./config.json')
 
 const EventEmitter = require('events');
 const emitter = new EventEmitter()
@@ -26,9 +24,9 @@ const highlight = chalk.yellow
 
 client.on('ready', async () => {
     // Console startup messages
-    console.log(infoPrefix(consoleInfoPrefix), `Loged on as ` + highlight(`${client.user.tag}`) + ` in ` + highlight(`${client.guilds.cache.size}`) + ` server(s) at ` + highlight(`${client.readyAt}`) + `.`);
-	console.log(infoPrefix(consoleInfoPrefix), `Bot created by ` + highlight(`FrenchBones`) + ` ` + url(`(https://frenchbones.net)`) + `. Please give credit when using my bot!`)
-	console.log(infoPrefix(consoleInfoPrefix), `Bot version:`, highlight(version), `\n`)
+    console.log(infoPrefix(config.consoleInfoPrefix), `Loged on as ` + highlight(`${client.user.tag}`) + ` in ` + highlight(`${client.guilds.cache.size}`) + ` server(s) at ` + highlight(`${client.readyAt}`) + `.`);
+	console.log(infoPrefix(config.consoleInfoPrefix), `Bot created by ` + highlight(`FrenchBones`) + ` ` + url(`(https://frenchbones.net)`) + `. Please give credit when using my bot!`)
+	console.log(infoPrefix(config.consoleInfoPrefix), `Bot version:`, highlight(version), `\n`)
 
     // Status 
     client.user.setPresence({

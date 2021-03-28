@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../../config.json')
+const config = require('../../config.json')
 
 module.exports = {
     commands: ['tempban', 'tempoban', 'temp-ban', 'tempo-ban', 'temporaryban', 'temporary-ban'],
@@ -11,10 +11,10 @@ module.exports = {
         let targetUser = message.mentions.members.first()
         if (!targetUser) {
             const banErrorEmbed = new Discord.MessageEmbed()
-                .setColor(embedErrorColor)
+                .setColor(config.embedErrorColor)
                 .setTitle('Temp Ban Error')
                 .setDescription(`User \`${arguments[0]}\` cannot be temporarily banned!\nThey could not be found in this server.`)
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(banErrorEmbed);
             return
         }
@@ -23,10 +23,10 @@ module.exports = {
         let reason = arguments.slice(2).join(" ")
         if (time < 1 || time > 7) {
             const banErrorEmbed = new Discord.MessageEmbed()
-                .setColor(embedErrorColor)
+                .setColor(config.embedErrorColor)
                 .setTitle('Temp Ban Error')
                 .setDescription(`Ban duration cannot be shorter than **1 day** and longer than **7 days**!`)
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(banErrorEmbed);
         }
         if (!reason) {
@@ -34,33 +34,33 @@ module.exports = {
         }
         if (member === message.author.id) {
             const banErrorEmbed = new Discord.MessageEmbed()
-                .setColor(embedErrorColor)
+                .setColor(config.embedErrorColor)
                 .setTitle('Temp Ban Error')
                 .setDescription(`You cannot temporarily ban yourself!`)
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(banErrorEmbed);
             return
         }
         if (!targetUser.bannable) {
             const banErrorEmbed = new Discord.MessageEmbed()
-                .setColor(embedErrorColor)
+                .setColor(config.embedErrorColor)
                 .setTitle('Temp Ban Error')
                 .setDescription(`User <@${member}> cannot be temporarily banned!\n*They might have a higher role than I do.*`)
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(banErrorEmbed);
             return
         } else {
             targetUser.ban({ days: time, reason: `${reason}` }).catch(err => {
                 const banErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(embedErrorColor)
+                    .setColor(config.embedErrorColor)
                     .setTitle('Error')
                     .setDescription(`${err}`)
-                    .setFooter(embedFooterText, embedFooterIcon);
+                    .setFooter(config.embedFooterText, config.embedFooterIcon);
                 message.channel.send(banErrorEmbed);
                 return
             })
             const banEmbed = new Discord.MessageEmbed()
-                .setColor(embedColor)
+                .setColor(config.embedColor)
                 .setTitle('User Temp Banned')
                 .setDescription(`User <@${member}> was temporarily banned!`)
                 .addFields(
@@ -68,7 +68,7 @@ module.exports = {
                     { name: 'Length', value: `${arguments[0]} days`, inline: true },
                     { name: 'Reason', value: `${reason}`, inline: false },
                 )
-                .setFooter(embedFooterText, embedFooterIcon);
+                .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(banEmbed);
         }
     },

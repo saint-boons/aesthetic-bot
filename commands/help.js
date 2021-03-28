@@ -1,17 +1,16 @@
 const Discord = require('discord.js');
-const { embedColor, embedWarnColor, embedErrorColor, embedFooterText, embedFooterIcon } = require('../config.json')
+const config = require('../config.json')
 const loadCommands = require('./load-commands')
-const { prefix } = require('../config.json')
 
 module.exports = {
 	commands: ['help'],
 	description: "Gives a list of avaliable commands and more info about them.",
 	callback: (client, message, arguments, text) => {
 		const helpEmbed = new Discord.MessageEmbed()
-			.setColor(embedColor)
+			.setColor(config.embedColor)
 			.setTitle('Command Help')
 			.setDescription('Here is a list of all avaliable commands.')
-			.setFooter(embedFooterText, embedFooterIcon);
+			.setFooter(config.embedFooterText, config.embedFooterIcon);
 		const commands = loadCommands()
 
 		for (const command of commands) {
@@ -56,7 +55,7 @@ module.exports = {
 			const { description } = command
 			const title = str => str.replace(/\b\S/g, t => t.toUpperCase());
 			const mainCommandTitle = title(mainCommand)
-			helpEmbed.addField(`${mainCommandTitle}`, `\`${prefix}${mainCommand}${args}\`\n*${description}*`, false)
+			helpEmbed.addField(`${mainCommandTitle}`, `\`${config.prefix}${mainCommand}${args}\`\n*${description}*`, false)
 		}
 		message.channel.send(helpEmbed);
 	},
