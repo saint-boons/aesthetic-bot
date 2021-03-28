@@ -1,11 +1,11 @@
 {
   "name": "aesthetic-bot",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Aesthetic BOT, a simple yet useful bot.",
   "main": "index.js",
   "scripts": {
-    "test": "npm i && nodemon index.js",
-    "start": "npm i && node index.js"
+    "test": "npm i && nodemon --trace-warnings index.js",
+    "start": "npm i && node --trace-warnings index.js"
   },
   "repository": {
     "type": "git",

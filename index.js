@@ -1,3 +1,4 @@
+require('events').EventEmitter.defaultMaxListeners = 15;
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
@@ -6,6 +7,10 @@ const loadCommands = require('./commands/load-commands')
 const { consoleInfoPrefix, consoleWarnPrefix, consoleErrorPrefix } = require('./config.json')
 const { version } = require('./package.json')
 const { serverID } = require('./config.json')
+
+const EventEmitter = require('events');
+const emitter = new EventEmitter()
+emitter.setMaxListeners(50)
 
 // Env
 require('dotenv').config();
