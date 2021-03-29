@@ -1,6 +1,6 @@
 {
   "name": "aesthetic-bot",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "Aesthetic BOT, a simple yet useful bot.",
   "main": "index.js",
   "scripts": {
