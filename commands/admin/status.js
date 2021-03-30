@@ -66,9 +66,9 @@ module.exports = {
             .setTitle('Status Changed')
             .setDescription(`The bot's status was changed.`)
             .addFields(
-                { name: 'Type', value: `${embedType}`, inline: false },
-                { name: 'Status', value: `${embedStatus}`, inline: false },
-                { name: 'Value', value: `${value}`, inline: false },
+                { name: 'Type', value: `\`\`\`${embedType}\`\`\``, inline: false },
+                { name: 'Status', value: `\`\`\`${embedStatus}\`\`\``, inline: false },
+                { name: 'Value', value: `\`\`\`${value}\`\`\``, inline: false },
             )
             .setFooter(config.embedFooterText, config.embedFooterIcon);
 

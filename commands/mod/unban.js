@@ -49,7 +49,7 @@ module.exports = {
                 .setDescription(`User <@${memberID}> was unbanned!`)
                 .addFields(
                     { name: 'Unbanned By', value: `${message.author}`, inline: true },
-                    { name: 'Reason', value: `${reason}`, inline: false },
+                    { name: 'Reason', value: `\`\`\`${reason}\`\`\``, inline: false },
                 )
                 .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(unbanEmbed);

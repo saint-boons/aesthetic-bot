@@ -13,8 +13,8 @@ module.exports = {
             if (!message.mentions.users.size) {
                 userInfoEmbed.setTitle('Your User Info')
                 userInfoEmbed.addField('Usnername', `${message.author.username}`, false)
-                userInfoEmbed.addField('ID', `${message.author.id}`, false)
-                userInfoEmbed.addField('Account Creation Date', `${message.author.createdAt}`, false)
+                userInfoEmbed.addField('ID', `\`\`\`${message.author.id}\`\`\``, false)
+                userInfoEmbed.addField('Account Creation Date', `\`\`\`${message.author.createdAt}\`\`\``, false)
                 userInfoEmbed.setThumbnail(message.author.displayAvatarURL({ format: "png", dynamic: true }))
                 message.channel.send(userInfoEmbed)
                 return
@@ -22,8 +22,8 @@ module.exports = {
             const otherUserInfo = message.mentions.users.map(user => {
                 userInfoEmbed.setTitle(`${user.username}'s User Info`)
                 userInfoEmbed.addField('Usnername', `${user.username}`, false)
-                userInfoEmbed.addField('ID', `${user.id}`, false)
-                userInfoEmbed.addField('Account Creation Date', `${user.createdAt}`, false)
+                userInfoEmbed.addField('ID', `\`\`\`${user.id}\`\`\``, false)
+                userInfoEmbed.addField('Account Creation Date', `\`\`\`${user.createdAt}\`\`\``, false)
                 userInfoEmbed.setThumbnail(user.displayAvatarURL({ format: "png", dynamic: true }))
                 return
             });

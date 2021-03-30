@@ -56,7 +56,7 @@ module.exports = {
                 .setDescription(`User <@${member}> was kicked!`)
                 .addFields(
                     { name: 'Kicked By', value: `${message.author}`, inline: true },
-                    { name: 'Reason', value: `${reason}`, inline: false },
+                    { name: 'Reason', value: `\`\`\`${reason}\`\`\``, inline: false },
                 )
                 .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(kickEmbed);

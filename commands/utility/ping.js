@@ -11,8 +11,8 @@ module.exports = {
 		    .setTitle('Ping Results')
 		    .setDescription('Here are the detailed ping results!')
 		    .addFields(
-			    { name: 'Bot Latency', value: `**${ping}** ms`, inline: true },
-			    { name: 'API Latency', value: `**${client.ws.ping}** ms`, inline: true },
+			    { name: 'Bot Latency', value: `\`\`\`${ping} ms\`\`\``, inline: true },
+			    { name: 'API Latency', value: `\`\`\`${client.ws.ping} ms\`\`\``, inline: true },
 		    )
 		    .setFooter(config.embedFooterText, config.embedFooterIcon);
 

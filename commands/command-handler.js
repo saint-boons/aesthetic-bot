@@ -60,7 +60,6 @@ module.exports = (client, commandOptions) => {
         maxArgs = null,
         requiredRoles = [],
         permissions = [],
-        permissionError = 'You do not have permission to run this command!',
         callback,
     } = commandOptions
 
@@ -92,7 +91,7 @@ module.exports = (client, commandOptions) => {
                         const permErrEmbed = new Discord.MessageEmbed()
 		                        .setColor(config.embedErrorColor)
 		                        .setTitle('Insufficient Permission')
-		                        .setDescription(`${permissionError}`)
+		                        .setDescription(`You must have \`${permission}\` permission node to use this command.`)
 		                        .setFooter(config.embedFooterText, config.embedFooterIcon);
 
 	                        message.channel.send(permErrEmbed);
@@ -127,7 +126,7 @@ module.exports = (client, commandOptions) => {
                     const syntaxErrEmbed = new Discord.MessageEmbed()
 		                .setColor(config.embedErrorColor)
 		                .setTitle('Syntax Error')
-		                .setDescription(`Improper syntax. Use: \`${config.prefix}${alias} ${expectedArgs}\`\nNeed some help? Do: \`${config.prefix}help\``)
+		                .setDescription(`Improper syntax. Use: \`\`\`${config.prefix}${alias} ${expectedArgs}\`\`\`\nNeed some help? Do: \`${config.prefix}help\``)
 		                .setFooter(config.embedFooterText, config.embedFooterIcon);
 
 	                message.channel.send(syntaxErrEmbed);

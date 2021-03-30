@@ -25,9 +25,9 @@ module.exports = {
 		    .setDescription('Here are some info on the bot.')
 		    .addFields(
 			    { name: 'Name', value: `${message.client.user}`, inline: false },
-			    { name: 'Server Count', value: `${message.client.guilds.cache.size}`, inline: false },
-				{ name: 'Uptime', value: `${uptimeFormated}`, inline: false },
-                { name: 'Version', value: `v${version}`, inline: false },
+			    { name: 'Server Count', value: `\`\`\`${message.client.guilds.cache.size}\`\`\``, inline: false },
+				{ name: 'Uptime', value: `\`\`\`${uptimeFormated}\`\`\``, inline: false },
+                { name: 'Version', value: `\`\`\`v${version}\`\`\``, inline: false },
 				{ name: 'Creator', value: `FrenchBones (https://frenchbones.net)`, inline: false },
 		    )
 		    .setFooter(config.embedFooterText, config.embedFooterIcon);

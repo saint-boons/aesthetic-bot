@@ -65,8 +65,8 @@ module.exports = {
                 .setDescription(`User <@${member}> was temporarily banned!`)
                 .addFields(
                     { name: 'Banned By', value: `${message.author}`, inline: true },
-                    { name: 'Length', value: `${arguments[0]} days`, inline: true },
-                    { name: 'Reason', value: `${reason}`, inline: false },
+                    { name: 'Length', value: `\`\`\`${arguments[0]} days\`\`\``, inline: true },
+                    { name: 'Reason', value: `\`\`\`${reason}\`\`\``, inline: false },
                 )
                 .setFooter(config.embedFooterText, config.embedFooterIcon);
             message.channel.send(banEmbed);

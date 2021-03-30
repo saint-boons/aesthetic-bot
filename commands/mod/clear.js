@@ -35,7 +35,7 @@ module.exports = {
 
 	                message.channel.send(successEmbed)
                     .then(msg => {
-                        setTimeout(() => msg.delete(), 3000)
+                        setTimeout(() => msg.delete(), 5000)
                     })
                 } catch {
                     const syntaxErrEmbed = new Discord.MessageEmbed()
