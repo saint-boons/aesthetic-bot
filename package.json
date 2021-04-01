@@ -1,6 +1,6 @@
 {
   "name": "aesthetic-bot",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "Aesthetic BOT, a simple yet useful bot.",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,7 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.22.0",
+    "js-yaml": "^4.0.0",
     "nodemon": "^2.0.7"
   }
 }
