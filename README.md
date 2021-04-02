@@ -1,27 +1,25 @@
-# Aesthetic BOT (aesthetic-bot)
+# Aesthetic BOT
 
-Aesthetic BOT is my first Discord bot. This bot is a general purpose bot. *the to-do list is in the testing discord*
+Aesthetic BOT (aesthetic-bot) is my first Discord bot, it's a general purpose bot. the to-do list can be found here: https://trello.com/b/RrA3avCJ/aesthetic-bot
 
-Join my discord server here https://discord.gg/7T24Mrw
-that is used for my socials and also just a general community.
+Join my community discord server here https://discord.gg/7T24Mrw, it is not for the bot's development.
 
-# Bot info
-
-- Language: discord.js *(node.js, javascript)*
-- Version: *in package.json*
+# Bot Information
+- Language: **discord.js** *(node.js, javascript)*
+- Version: **in package.json**
 - Testing server: https://discord.gg/u69Jm4T
 - Dependencies: 
-  - discord.js
-  - chalk
-  - dotenv
-  - js-yaml
+  - **discord.js**
+  - **chalk**
+  - **dotenv**
+  - **js-yaml**
   - nodemon *(optional)*
+
 *running `npm start` will get those for you*
 
 # Installation
 
-### Before you start
-
+### Before you start:
 1. Go to https://discord.com/developers/applications
 2. Create an application and give it a name *(and a profile picture if you want)*
 3. On the side click on `Bot` and click `New Bot`
@@ -33,9 +31,8 @@ https://discord.com/api/oauth2/authorize?client_id=CLIENT ID HERE&permissions=8&
 ```
 *change `CLIENT ID HERE` make sure you keep `&permissions=8&scope=bot%20applications.commands` after the `Client ID`*
 
-### Setting up the files
-
-1. Get code in ZIP
+### If hosted on local machine or server:
+1. Download your desired version
 2. Create a `.env` file with the following inside:
 ```
 DISCORD_TOKEN=(BOT TOKEN)
@@ -48,10 +45,10 @@ DISCORD_TOKEN=(BOT TOKEN)
 6. Run `npm start`
 
 *steps 3-5 if self-hosted, otherwise see below*
+
 *run `npm test` to run the bot with nodemon*
 
 ### If hosted on Heroku:
-
 1. Fork this repository
 2. Create a Heroku account
 3. Create an application
@@ -61,7 +58,16 @@ DISCORD_TOKEN=(BOT TOKEN)
 
 *Procfile already exists*
 
-### Configuration
+# Configuration
 
+### Information
 - Config file: config.yaml
 - Lang file: *comming soon...*
+
+# Other Information
+
+### About releases:
+Please only get releases from the side under "Realeases" on the side.
+
+### About redistribution/reselling:
+Please check the `LICENSE` file.
