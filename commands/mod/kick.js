@@ -1,5 +1,9 @@
-const Discord = require('discord.js');
-const config = require('../../config.json')
+// Load embed module
+const embed = require('../../modules/embed.js')
+
+// Load YAML module
+const loadYAML = require('../../modules/yaml.js')
+const config = loadYAML('config')
 
 module.exports = {
     commands: ['kick'],
@@ -10,12 +14,7 @@ module.exports = {
     callback: (client, message, arguments, text) => {
         let targetUser = message.mentions.members.first()
         if (!targetUser) {
-            const kickErrorEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedErrorColor)
-                .setTitle('Kick Error')
-                .setDescription(`User \`${arguments[0]}\` cannot be kicked!\n*They could not be found in this server.*`)
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(kickErrorEmbed);
+            message.channel.send(embed('error', `Kick`, `User \`${arguments[0]}\` cannot be kicked!\n*They could not be found in this server.*`))
             return
         }
         let member = targetUser.id
@@ -24,42 +23,21 @@ module.exports = {
             reason = 'Unspecifed'
         }
         if (member === message.author.id) {
-            const kickErrorEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedErrorColor)
-                .setTitle('Kick Error')
-                .setDescription(`You cannot kick yourself!`)
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(kickErrorEmbed);
+            message.channel.send(embed('error', `Kick`, `You cannot kick yourself!`))
             return
         }
         if (!targetUser.kickable) {
-            const kickErrorEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedErrorColor)
-                .setTitle('Kick Error')
-                .setDescription(`User <@${member}> cannot be kicked!\n*They might have a higher role than I do.*`)
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(kickErrorEmbed);
+            message.channel.send(embed('error', `Kick`, `User <@${member}> cannot be kicked!\n*They might have a higher role than I do.*`))
             return
         } else {
             targetUser.kick({ reason: `${reason}` }).catch(err => {
-                const kickErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(config.embedErrorColor)
-                    .setTitle('Error')
-                    .setDescription(`${err}`)
-                    .setFooter(config.embedFooterText, config.embedFooterIcon);
-                message.channel.send(kickErrorEmbed);
+                message.channel.send(embed('error', `Unknown`, `${err}`))
                 return
             })
-            const kickEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedColor)
-                .setTitle('User Kicked')
-                .setDescription(`User <@${member}> was kicked!`)
-                .addFields(
-                    { name: 'Kicked By', value: `${message.author}`, inline: true },
-                    { name: 'Reason', value: `\`\`\`${reason}\`\`\``, inline: false },
-                )
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(kickEmbed);
+            message.channel.send(embed('default', `User Kicked`, `User <@${member}> was kicked!`).addFields(
+                { name: 'Kicked By', value: `${message.author}`, inline: true },
+                { name: 'Reason', value: `\`\`\`${reason}\`\`\``, inline: false },
+            ))
         }
     },
 };

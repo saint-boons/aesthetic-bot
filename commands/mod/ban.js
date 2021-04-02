@@ -1,5 +1,9 @@
-const Discord = require('discord.js');
-const config = require('../../config.json')
+// Load embed module
+const embed = require('../../modules/embed.js')
+
+// Load YAML module
+const loadYAML = require('../../modules/yaml.js')
+const config = loadYAML('config')
 
 module.exports = {
     commands: ['ban', 'permban', 'perm-ban', 'permaban', 'perma-ban'],
@@ -10,12 +14,7 @@ module.exports = {
     callback: (client, message, arguments, text) => {
         let memberTag = message.mentions.members.first()
         if (!memberTag) {
-            const banErrorEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedErrorColor)
-                .setTitle('Ban Error')
-                .setDescription(`User \`${arguments[0]}\` cannot be permanently banned!\n*They could not be found in this server.*`)
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(banErrorEmbed);
+            message.channel.send(embed('error', `Ban`, `User \`${arguments[0]}\` cannot be permanently banned!\n*They could not be found in this server.*`))
             return
         }
         let memberID = memberTag.id
@@ -24,43 +23,22 @@ module.exports = {
             reason = 'Unspecifed'
         }
         if (memberID === message.author.id) {
-            const banErrorEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedErrorColor)
-                .setTitle('Ban Error')
-                .setDescription(`You cannot permanently ban yourself!`)
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(banErrorEmbed);
+            message.channel.send(embed('error', `Ban`, `You cannot permanently ban yourself!`))
             return
         }
         if (!memberTag.bannable) {
-            const banErrorEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedErrorColor)
-                .setTitle('Ban Error')
-                .setDescription(`User ${memberTag} cannot be permanently banned!\n*They might have a higher role than I do.*`)
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(banErrorEmbed);
+            message.channel.send(embed('error', `Ban`, `User ${memberTag} cannot be permanently banned!\n*They might have a higher role than I do.*`))
             return
         } else {
             memberTag.ban({ reason: `${reason}` }).catch(err => {
-                const banErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(config.embedErrorColor)
-                    .setTitle('Error')
-                    .setDescription(`${err}`)
-                    .setFooter(config.embedFooterText, config.embedFooterIcon);
-                message.channel.send(banErrorEmbed);
+                message.channel.send(embed('error', `Unknown`, `${err}`))
                 return
             })
-            const banEmbed = new Discord.MessageEmbed()
-                .setColor(config.embedColor)
-                .setTitle('User Banned')
-                .setDescription(`User ${memberTag} was permanently banned!`)
-                .addFields(
-                    { name: 'Banned By', value: `${message.author}`, inline: true },
-                    { name: 'Length', value: `\`\`\`PERMANENT\`\`\``, inline: true },
-                    { name: 'Reason', value: `\`\`\`${reason}\`\`\``, inline: false },
-                )
-                .setFooter(config.embedFooterText, config.embedFooterIcon);
-            message.channel.send(banEmbed);
+            message.channel.send(embed('default', `User Banned`, `User ${memberTag} was permanently banned!`).addFields(
+                { name: 'Banned By', value: `${message.author}`, inline: true },
+                { name: 'Length', value: `\`\`\`PERMANENT\`\`\``, inline: true },
+                { name: 'Reason', value: `\`\`\`${reason}\`\`\``, inline: false },
+            ))
         }
     },
 };

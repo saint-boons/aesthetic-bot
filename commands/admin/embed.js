@@ -1,5 +1,9 @@
-const Discord = require('discord.js');
-const config = require('../../config.json')
+// Load embed module
+const embed = require('../../modules/embed.js')
+
+// Load YAML module
+const loadYAML = require('../../modules/yaml.js')
+const config = loadYAML('config')
 
 module.exports = {
     commands: ['embed'],
@@ -11,30 +15,19 @@ module.exports = {
         var color = arguments[0].toLowerCase()
         const title = arguments[1]
         const content = arguments.slice(2).join(" ")
-        const textEmbed = new Discord.MessageEmbed()
         if (color == 'default') {
-            textEmbed.setColor(`${config.embedColor}`)
+            message.channel.send(embed('default', `${title}`, `${content}`))
         } else {
             if (color.length == 6) {
                 color = '#' + `${color}`
             }
             var isHex = /^#[0-9A-F]{6}$/i.test(color);
             if (isHex == true) {
-                textEmbed.setColor(`${color}`)
+                message.delete()
+                message.channel.send(embed('default', `${title}`, `${content}`).setColor(`${color}`))
             } else {
-                const syntaxErrorEmbed = new Discord.MessageEmbed()
-                    .setColor(`${config.embedErrorColor}`)
-                    .setTitle(`Syntax Error`)
-                    .setDescription(`Expecting a valid hex colour code or \`default\`!`)
-                    .setFooter(config.embedFooterText, config.embedFooterIcon);
-                message.channel.send(syntaxErrorEmbed)
-                return
+                message.channel.send(embed('error', `Incorrect Usage`, `Expecting a valid hex colour code or \`default\`.`))
             }
         }
-        textEmbed.setTitle(`${title}`)
-        textEmbed.setDescription(`${content}`)
-        textEmbed.setFooter(config.embedFooterText, config.embedFooterIcon)
-        message.delete()
-        message.channel.send(textEmbed)
     },
 };

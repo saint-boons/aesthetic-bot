@@ -1,9 +1,16 @@
 const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
-const config = require("../config.json");
+
+// Load commands
 const loadCommands = require("./load-commands");
-const { requiredRoles } = require("./mod/ban");
+
+// Load embed module
+const embed = require('../modules/embed.js')
+
+// Load YAML module
+const loadYAML = require('../modules/yaml.js')
+const config = loadYAML('config')
 
 module.exports = {
 	commands: ["help"],
@@ -13,23 +20,21 @@ module.exports = {
 	callback: (client, message, arguments, text) => {
 		const title = (str) => str.replace(/\b\S/g, (t) => t.toUpperCase());
 		if (!arguments[0]) {
-			const helpEmbed = new Discord.MessageEmbed()
-				.setColor(config.embedColor)
+			// Not going to touch this embed...
+			const embed = new Discord.MessageEmbed()
+				.setColor(config.Embeds.Color.Default)
 				.setTitle("Command Help")
 				.setDescription("Here are the avaliable commands.")
-				.setFooter(config.embedFooterText, config.embedFooterIcon);
+				.setFooter(config.Embeds.Footer.Text, config.Embeds.Footer.Icon);
 			const commandsFiles = fs.readdirSync(path.join(__dirname, './'));
 			const folders = commandsFiles.filter(command => !command.includes('.js'));
 			for (const folder of folders) {
 				const commandList = fs.readdirSync(path.join(__dirname, '.', folder));
 				const commandListFormat = commandList.join(', ').replace(/\.js/g, '');
-				helpEmbed.addField(title(folder), `\`\`\`${commandListFormat}\`\`\``, true)
+				embed.addField(title(folder), `\`\`\`${commandListFormat}\`\`\``, true)
 			}
-			message.channel.send(helpEmbed);
+			message.channel.send(embed);
 		} else {
-			const specificHelpEmbed = new Discord.MessageEmbed()
-				.setColor(config.embedColor)
-				.setFooter(config.embedFooterText, config.embedFooterIcon);
 			const commands = loadCommands()
 			let allCommands = []
 			for (const command of commands) {
@@ -77,7 +82,7 @@ module.exports = {
 						if (command.expectedArgs) {
 							var args = command.expectedArgs
 						} else {
-							var args = 'none'
+							var args = ''
 						}
 						var { description } = command
 						if (!requiredRolesForField) {
@@ -91,30 +96,28 @@ module.exports = {
 						if (requiredRolesForField || requiredPermsForField) {
 							var requiredRolesAndPerms = `${requiredRolesForField}${sperator}${requiredPermsForField}`
 						}
-						if (hasPermission == true || hasRequiredRole == true) {
-							var canRun = 'Yes'
+						if (permissions && requiredRoles) {
+							if (hasPermission == true || hasRequiredRole == true) {
+								var canRun = 'Yes'
+							} else {
+								var canRun = 'No'
+							}
 						} else {
-							var canRun = 'No'
+							var canRun = 'Yes'
+							var requiredRolesAndPerms = `none`
 						}
+
 					} else {
 						continue
 					}
 				}
-				specificHelpEmbed.setTitle(`\`${mainCommand}\` Command Help`)
-				specificHelpEmbed.setDescription(`**Description:** ${description}`)
-				specificHelpEmbed.addFields(
-					{ name: 'Usage', value: `\`\`\`${config.prefix}${mainCommand} ${args}\`\`\``, inline: false },
+				message.channel.send(embed('default', `\`${mainCommand}\` Command Help`, `**Description:** ${description}`).addFields(
+					{ name: 'Usage', value: `\`\`\`${config.Prefix}${mainCommand} ${args}\`\`\``, inline: false },
 					{ name: 'Required Roles & Permissions', value: `\`\`\`${requiredRolesAndPerms}\`\`\``, inline: true },
 					{ name: 'Accessible', value: `\`\`\`${canRun}\`\`\``, inline: true },
-					)
-				message.channel.send(specificHelpEmbed);
+				))
 			} else {
-				const helpErrorEmbed = new Discord.MessageEmbed()
-					.setColor(config.embedErrorColor)
-					.setTitle(`Help Error`)
-					.setDescription(`\`${arguments[0]}\` does not exist`)
-					.setFooter(config.embedFooterText, config.embedFooterIcon);
-				message.channel.send(helpErrorEmbed);
+				message.channel.send(embed('error', `Unknown Command`, `\`${arguments[0]}\` does not exist`))
 			}
 		}
 	}

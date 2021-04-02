@@ -1,4 +1,6 @@
-const { prefix } = require('./config.json')
+//Load YAML Config file
+const loadYAML = require('./utilities/yaml.js')
+const config = loadYAML('config')
 
 module.exports = (client, aliases, callback) => {
     if (typeof aliases === 'string') {
@@ -9,7 +11,7 @@ module.exports = (client, aliases, callback) => {
         const { content } = message;
 
         aliases.forEach(alias => {
-            const command = `${prefix}${alias}`
+            const command = `${config.Prefix}${alias}`
 
             if (content.startsWith(`${command} `) || content === command) {
                 callback(message)

@@ -1,5 +1,9 @@
-const Discord = require('discord.js');
-const config = require('../../config.json')
+// Load embed module
+const embed = require('../../modules/embed.js')
+
+// Load YAML module
+const loadYAML = require('../../modules/yaml.js')
+const config = loadYAML('config')
 
 module.exports = {
 	commands: ['clear', 'clean'],
@@ -17,34 +21,16 @@ module.exports = {
             let nMessages = parseInt(arguments)
             
             if (isNaN(nMessages) || (nMessages < 1 || nMessages > 99)) {
-                const syntaxErrEmbed = new Discord.MessageEmbed()
-		            .setColor(config.embedErrorColor)
-		            .setTitle('Syntax Error')
-		            .setDescription(`Expecting a \`number (1-99)\` or \`all\` as an argument`)
-		            .setFooter(config.embedFooterText, config.embedFooterIcon);
-
-	            message.channel.send(syntaxErrEmbed);
+                message.channel.send(embed('error', `Incorrect Usage`, `Expecting a \`number (1-99)\` or \`all\` as an argument.`))
             } else {
                 try {
                     message.channel.bulkDelete(nMessages + 1, true)
-                    const successEmbed = new Discord.MessageEmbed()
-		                .setColor(config.embedColor)
-		                .setTitle('Success')
-		                .setDescription(`**${nMessages}** message(s) cleared!`)
-		                .setFooter(config.embedFooterText, config.embedFooterIcon);
-
-	                message.channel.send(successEmbed)
+                    message.channel.send(embed('default', `Messages Cleared`, `**${nMessages}** message(s) cleared!`))
                     .then(msg => {
                         setTimeout(() => msg.delete(), 5000)
                     })
                 } catch {
-                    const syntaxErrEmbed = new Discord.MessageEmbed()
-		                .setColor(config.embedErrorColor)
-		                .setTitle('Error')
-		                .setDescription(`The messages you are trying to delete are older than 14 days and therefore cannot be deleted.`)
-		                .setFooter(config.embedFooterText, config.embedFooterIcon);
-
-	                message.channel.send(syntaxErrEmbed);
+                    message.channel.send(embed('error', `Messages Too Old`, `The messages you are trying to delete are older than 14 days and therefore cannot be deleted.`))
                 };
             }
         }

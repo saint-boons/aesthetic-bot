@@ -1,21 +1,19 @@
-const Discord = require('discord.js');
-const config = require('../../config.json')
+// Load embed module
+const embed = require('../../modules/embed.js')
+
+// Load YAML module
+const loadYAML = require('../../modules/yaml.js')
+const config = loadYAML('config')
 
 module.exports = {
-    commands: ['ping'],
+    commands: ['ping', 'latency'],
 	description: "Check the bot's and api latency.",
     callback: (client, message, agruments, text) => {
+		// Calculate bot latency
         const ping = new Date().getTime() - message.createdTimestamp;
-	    const pingEmbed = new Discord.MessageEmbed()
-		    .setColor(config.embedColor)
-		    .setTitle('Ping Results')
-		    .setDescription('Here are the detailed ping results!')
-		    .addFields(
-			    { name: 'Bot Latency', value: `\`\`\`${ping} ms\`\`\``, inline: true },
-			    { name: 'API Latency', value: `\`\`\`${client.ws.ping} ms\`\`\``, inline: true },
-		    )
-		    .setFooter(config.embedFooterText, config.embedFooterIcon);
-
-	    message.channel.send(pingEmbed);
+	    message.channel.send(embed('default', `Ping Results`, `Here are the detailed ping results!`).addFields(
+			{ name: 'Bot Latency', value: `\`\`\`${ping} ms\`\`\``, inline: true },
+			{ name: 'API Latency', value: `\`\`\`${client.ws.ping} ms\`\`\``, inline: true },
+		));
     },
 }

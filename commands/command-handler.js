@@ -1,13 +1,17 @@
-const Discord = require('discord.js');
-const config = require('../config.json')
+// Load embed module
+const embed = require('../modules/embed.js')
+
+// Load YAML module
+const loadYAML = require('../modules/yaml.js')
+const config = loadYAML('config')
 
 // Chalk
 const chalk = require('chalk');
-const infoPrefix = chalk.black.bgWhite
-const warnPrefix = chalk.black.bgYellow
-const errorPrefix = chalk.white.bgRed
-const url = chalk.blue.underline
-const highlight = chalk.yellow
+const infoPrefixColor = chalk.black.bgWhite
+const warnPrefixColor = chalk.black.bgYellow
+const errorPrefixColor = chalk.white.bgRed
+const urlColor = chalk.blue.underline
+const highlightColor = chalk.yellow
 
 // Valid Discord permission nodes function
 const validatePermissions = (permissions) => {
@@ -68,7 +72,7 @@ module.exports = (client, commandOptions) => {
         commands = [commands]
     }
 
-    console.log(infoPrefix(config.consoleInfoPrefix), `Registering command:`, highlight(commands[0]))
+    console.log(infoPrefixColor(config.ConsoleStyle.Prefix.Info), `Command registered:`, highlightColor(commands[0]))
 
     // Convert strong to array - permissions
     if (permissions.length) {
@@ -84,17 +88,11 @@ module.exports = (client, commandOptions) => {
         const { member, content, guild } = message
 
         for (const alias of commands) {
-            if (content.toLowerCase().startsWith(`${config.prefix}${alias.toLowerCase()}`)) {
+            if (content.toLowerCase().startsWith(`${config.Prefix}${alias.toLowerCase()}`)) {
                 // Perms check - permission
                 for (const permission of permissions) {
                     if (!member.hasPermission(permission)) {
-                        const permErrEmbed = new Discord.MessageEmbed()
-		                        .setColor(config.embedErrorColor)
-		                        .setTitle('Insufficient Permission')
-		                        .setDescription(`You must have \`${permission}\` permission node to use this command.`)
-		                        .setFooter(config.embedFooterText, config.embedFooterIcon);
-
-	                        message.channel.send(permErrEmbed);
+                        message.channel.send(embed('error', `Insufficient Permission`, `You must have \`${permission}\` permission node(s) to use this command.`))
                         return
                     }
                 }
@@ -104,13 +102,7 @@ module.exports = (client, commandOptions) => {
                         const role = guild.roles.cache.find(role => role.name === requiredRole)
                         
                         if (!role || !member.roles.cache.has(role.id)) {
-                            const roleErrEmbed = new Discord.MessageEmbed()
-		                        .setColor(config.embedErrorColor)
-		                        .setTitle('Insufficient Permission')
-		                        .setDescription(`You must have \`${requiredRole}\` role to use this command.`)
-		                        .setFooter(config.embedFooterText, config.embedFooterIcon);
-
-	                        message.channel.send(roleErrEmbed);
+                            message.channel.send(embed('error', `Insufficient Permission`, `You must have \`${requiredRole}\` role(s) to use this command.`))
                             return
                         }
                 }
@@ -123,13 +115,7 @@ module.exports = (client, commandOptions) => {
                 if (arguments.length < minArgs || (
                     maxArgs !== null && arguments.length > maxArgs
                 )) {
-                    const syntaxErrEmbed = new Discord.MessageEmbed()
-		                .setColor(config.embedErrorColor)
-		                .setTitle('Syntax Error')
-		                .setDescription(`Improper syntax. Use: \`\`\`${config.prefix}${alias} ${expectedArgs}\`\`\`\nNeed some help? Do: \`${config.prefix}help\``)
-		                .setFooter(config.embedFooterText, config.embedFooterIcon);
-
-	                message.channel.send(syntaxErrEmbed);
+                    message.channel.send(embed('error', `Incorrect Syntax`, `Incorrect syntax. Use: \`\`\`${config.Prefix}${alias} ${expectedArgs}\`\`\`\nNeed some help? Do: \`${config.Prefix}help\``))
                     return
                 }
 
