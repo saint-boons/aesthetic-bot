@@ -11,7 +11,7 @@ module.exports = {
     minArgs: 1,
     requiredRoles: ['Mod'],
     description: "Ban a member.",
-    callback: (client, message, arguments, text) => {
+    callback: (client, message, arguments) => {
         let memberTag = message.mentions.members.first()
         if (!memberTag) {
             message.channel.send(embed('error', `Ban`, `User \`${arguments[0]}\` cannot be permanently banned!\n*They could not be found in this server.*`))

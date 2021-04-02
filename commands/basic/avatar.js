@@ -10,7 +10,7 @@ module.exports = {
     expectedArgs: '<user> / none',
     maxArgs: 1,
     description: "Get someone else's discord avatar.",
-    callback: (client, message, user, agruments, text) => {
+    callback: (client, message) => {
             if (!message.mentions.users.size) {
                 message.channel.send(embed('default', `Your Avatar`, ``).addField('URL', `${message.author.displayAvatarURL({ format: "png", dynamic: true })}`, false).setImage(message.author.displayAvatarURL({ format: "png", dynamic: true })))
             }

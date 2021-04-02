@@ -11,7 +11,7 @@ module.exports = {
 	commands: ['bot-info', 'botinfo'],
     maxArgs: 0,
     description: "Get some information on the bot.",
-	callback: (client, message, arguments, text) => {
+	callback: (client, message) => {
         if (message.client.uptime < 60000) {
             uptimeFormated = Math.round(message.client.uptime / 1000) + ' second(s)'
         }

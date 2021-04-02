@@ -14,7 +14,9 @@ that is used for my socials and also just a general community.
   - discord.js
   - chalk
   - dotenv
+  - js-yaml
   - nodemon *(optional)*
+*running `npm start` will get those for you*
 
 # Installation
 
@@ -58,3 +60,8 @@ DISCORD_TOKEN=(BOT TOKEN)
 6. Since the bot is ready to be hosted with Heroku, you just need to turn off `web` and turn on the `worker` under `Resources`
 
 *Procfile already exists*
+
+### Configuration
+
+- Config file: config.yaml
+- Lang file: *comming soon...*

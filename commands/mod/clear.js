@@ -12,7 +12,7 @@ module.exports = {
     maxArgs: 1,
     requiredRoles: ['Mod'],
     description: "Clear a certain number of messages at once.",
-	callback: (client, message, arguments, text) => {
+	callback: (client, message, arguments) => {
 		if (arguments == 'all') {
             message.channel.messages.fetch().then(results => {
                 message.channel.bulkDelete(results, true)

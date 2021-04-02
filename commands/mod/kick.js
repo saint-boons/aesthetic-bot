@@ -11,7 +11,7 @@ module.exports = {
     minArgs: 1,
     requiredRoles: ['Mod'],
     description: "Kick a member.",
-    callback: (client, message, arguments, text) => {
+    callback: (client, message, arguments) => {
         let targetUser = message.mentions.members.first()
         if (!targetUser) {
             message.channel.send(embed('error', `Kick`, `User \`${arguments[0]}\` cannot be kicked!\n*They could not be found in this server.*`))

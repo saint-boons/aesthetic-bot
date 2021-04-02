@@ -9,7 +9,7 @@ module.exports = {
 	commands: ['server-info', 'serverinfo', 'guild-info', 'guildinfo'],
 	maxArgs: 0,
 	description: "Get some information about the server.",
-	callback: (client, message, arguments, text) => {
+	callback: (client, message) => {
 		message.channel.send(embed('default', `Server Info`, `Here is some info on this server.`).addFields(
 			{ name: 'Name', value: `\`\`\`${message.guild.name}\`\`\``, inline: false },
 			{ name: 'Total Members', value: `\`\`\`${message.guild.memberCount}\`\`\``, inline: false },

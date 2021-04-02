@@ -11,7 +11,7 @@ module.exports = {
     minArgs: 1,
     requiredRoles: ['Mod'],
     description: "Temporarily ban a member.",
-    callback: (client, message, arguments, text) => {
+    callback: (client, message, arguments) => {
         let targetUser = message.mentions.members.first()
         if (!targetUser) {
             message.channel.send(embed('error', `Temp Ban`, `User \`${arguments[0]}\` cannot be temporarily banned!\nThey could not be found in this server.`))

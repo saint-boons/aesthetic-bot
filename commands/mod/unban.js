@@ -11,7 +11,7 @@ module.exports = {
     minArgs: 1,
     requiredRoles: ['Mod'],
     description: "Unban a member.",
-    callback: (client, message, arguments, text) => {
+    callback: (client, message, arguments) => {
         let memberID = arguments[0]
         let memberTag = arguments[0].tag
         if (memberTag) {

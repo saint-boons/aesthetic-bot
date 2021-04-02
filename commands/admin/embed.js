@@ -11,7 +11,7 @@ module.exports = {
     minArgs: 3,
     requiredRoles: ['Admin'],
     description: "Send a fancy embed message with the bot.",
-    callback: (client, message, arguments, text) => {
+    callback: (client, message, arguments) => {
         var color = arguments[0].toLowerCase()
         const title = arguments[1]
         const content = arguments.slice(2).join(" ")

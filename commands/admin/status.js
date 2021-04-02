@@ -11,7 +11,7 @@ module.exports = {
     minArgs: 3,
     requiredRoles: ['Admin'],
     description: "Change the bot's status.",
-    callback: (client, message, arguments, text) => {
+    callback: (client, message, arguments) => {
         const status = arguments[0].toLowerCase()
         const type = arguments[1].toUpperCase()
         const value = arguments.slice(2).join(" ")

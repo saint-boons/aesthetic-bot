@@ -10,7 +10,7 @@ module.exports = {
     expectedArgs: '<user> / none',
     maxArgs: 1,
     description: "Get some information about a user or yourself.",
-	callback: (client, message, arguments, text) => {
+	callback: (client, message) => {
             if (!message.mentions.users.size) {
                 message.channel.send(embed('default', `Your User Info`, `Here is some info on yourself.`).addFields(
                     { name: 'Username', value: `<@${message.author.id}>`, inline: false },
