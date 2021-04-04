@@ -1,3 +1,7 @@
+# ARCHIVED REPOSITORY
+
+### https://github.com/Aesthetic-BOT/bot is where releases and development versions will be!
+
 # Aesthetic BOT
 
 Aesthetic BOT (aesthetic-bot) is my first Discord bot, it's a general purpose bot. the to-do list can be found here: https://trello.com/b/RrA3avCJ/aesthetic-bot
