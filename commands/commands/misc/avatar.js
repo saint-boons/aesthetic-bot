@@ -1,13 +1,13 @@
 // Load embed module
-const embed = require('../../modules/embed.js')
+const embed = require('@modules/embed.js')
 
 // Load YAML module
-const loadYAML = require('../../modules/yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 module.exports = {
     commands: ['avatar', 'icon', 'pfp'],
-    expectedArgs: '<user> / none',
+    expectedArgs: '<user / none>',
     maxArgs: 1,
     description: "Get someone else's discord avatar.",
     callback: (client, message) => {

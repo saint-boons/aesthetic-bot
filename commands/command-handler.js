@@ -1,8 +1,8 @@
 // Load embed module
-const embed = require('../modules/embed.js')
+const embed = require('@modules/embed.js')
 
 // Load YAML module
-const loadYAML = require('../modules/yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 // Chalk
@@ -64,6 +64,8 @@ module.exports = (client, commandOptions) => {
         maxArgs = null,
         requiredRoles = [],
         permissions = [],
+        serverOnly = false,
+        nsfw = false,
         callback,
     } = commandOptions
 
@@ -89,6 +91,18 @@ module.exports = (client, commandOptions) => {
 
         for (const alias of commands) {
             if (content.toLowerCase().startsWith(`${config.Prefix}${alias.toLowerCase()}`)) {
+                // Server (guild) only check
+                if (commandOptions.serverOnly && message.channel.type === 'dm') {
+                    message.channel.send(embed('error', `Incorrect Channel Type`, `This command can only be run in a server text channel`))
+                    return
+                }
+
+                // NSFW check
+                if (commandOptions.nsfw && message.channel.nsfw === false) {
+                    message.channel.send(embed('error', `Incorrect Channel Type`, `This command can only be run in a NSFW text channel`))
+                    return
+                }
+                
                 // Perms check - permission
                 for (const permission of permissions) {
                     if (!member.hasPermission(permission)) {

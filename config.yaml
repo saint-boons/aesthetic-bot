@@ -24,6 +24,7 @@
 # Bot Token in an .env file for safety...  #
 # Learn more in README.md                  #
 ############################################
+OwnerID: 285358176096747522
 BotName: "Aesthetic BOT"
 Prefix: "-"
 
@@ -34,8 +35,53 @@ Embeds:
     Error: RED
   Footer:
     Text: Aesthetic BOT
-    Icon: https://i.imgur.com/wz6faLJ.jpg
+    Icon: https://i.imgur.com/PQY5oE6.png
 
+Currency:
+  Rate:
+    Symbols: 
+      - EUR
+      - USD
+      - CHF
+      - GBP
+      - CAD
+      - JPY
+      - CNY
+      - INR
+  Convert:
+    MinimumAmount: 0.01
+    MaximumAmount: 1.00E+11 #Represents 100 000 000 000
+
+Meme:
+  DefaultSubreddit: memes
+  ValidSubreddits:
+    - memes
+    - meme
+    - dankmemes
+    - goodanimememes
+    - animememes
+    - christianmemes
+    - edgymemes
+    - memeeconomy
+    - minecraftmemes
+    - nukedmemes
+    - surrealmemes
+    - jojomemes
+
+Reddit:
+  DefaultType: random
+  BannedSubreddits:
+    Enabled: false
+    List: # Note: NSFW subredits are automaticly filtered here, this is why there is a nsfw-reddit command.
+      - something
+
+NSFW:
+  Reddit:
+    DefaultType: random
+    BannedSubreddits:
+      Enabled: false
+      List:
+        - something
 # More to come...
 
 ############################################
@@ -48,6 +94,8 @@ ConsoleStyle:
     Info: INFO >
     Warn: WARN >
     Error: ERROR >
+  Color:
+    # In modules/chalk.js
 
 # [!] Not implemented yet
 ConsoleOutput:

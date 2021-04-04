@@ -1,8 +1,8 @@
 // Load embed module
-const embed = require('../../modules/embed.js')
+const embed = require('@modules/embed.js')
 
 // Load YAML module
-const loadYAML = require('../../modules/yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 module.exports = {
@@ -10,6 +10,7 @@ module.exports = {
     expectedArgs: '<user> <reason>',
     minArgs: 1,
     requiredRoles: ['Mod'],
+    serverOnly: true,
     description: "Kick a member.",
     callback: (client, message, arguments) => {
         let targetUser = message.mentions.members.first()

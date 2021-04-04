@@ -1,15 +1,14 @@
-const { version } = require('../../package.json')
+const { version } = require('@root/package.json')
 
 // Load embed module
-const embed = require('../../modules/embed.js')
+const embed = require('@modules/embed.js')
 
 // Load YAML module
-const loadYAML = require('../../modules/yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 module.exports = {
 	commands: ['bot-info', 'botinfo'],
-    maxArgs: 0,
     description: "Get some information on the bot.",
 	callback: (client, message) => {
         if (message.client.uptime < 60000) {

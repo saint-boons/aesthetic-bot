@@ -1,5 +1,5 @@
 //Load YAML Config file
-const loadYAML = require('./utilities/yaml.js')
+const loadYAML = require('@utilities/yaml.js')
 const config = loadYAML('config')
 
 module.exports = (client, aliases, callback) => {

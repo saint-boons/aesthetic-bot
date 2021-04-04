@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
 // Load YAML module
-const loadYAML = require('./yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 // Chalk

@@ -1,17 +1,18 @@
-require('events').EventEmitter.defaultMaxListeners = 15;
-const EventEmitter = require('events');
-const emitter = new EventEmitter()
-emitter.setMaxListeners(50)
+require('events').EventEmitter.defaultMaxListeners = 50;
 
+// Path aliases
+require('module-alias/register')
+
+// New client
 const Discord = require('discord.js')
 const client = new Discord.Client()
 
-const loadCommands = require('./commands/load-commands')
-const { version } = require('./package.json')
-
-// Load YAML module
-const loadYAML = require('./modules/yaml.js')
+// Load commands and get version
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
+const loadCommands = require('@root/commands/load-commands')
+const loadFeatures = require('@root/features/load-features')
+const { version } = require('@root/package.json')
 
 // Env
 require('dotenv').config();
@@ -40,8 +41,8 @@ client.on('ready', async () => {
         }
     });
 
-    //Command handler
     loadCommands(client)
+    loadFeatures(client)
 })
 
 // Bot login

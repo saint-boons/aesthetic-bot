@@ -1,15 +1,14 @@
 const fs = require("fs");
 const path = require("path");
-const Discord = require("discord.js");
 
 // Load commands
-const loadCommands = require("./load-commands");
+const loadCommands = require("@root/commands/load-commands");
 
 // Load embed module
-const embed = require('../modules/embed.js')
+const embed = require('@modules/embed.js')
 
 // Load YAML module
-const loadYAML = require('../modules/yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 module.exports = {
@@ -21,19 +20,15 @@ module.exports = {
 		const title = (str) => str.replace(/\b\S/g, (t) => t.toUpperCase());
 		if (!arguments[0]) {
 			// Not going to touch this embed...
-			const embed = new Discord.MessageEmbed()
-				.setColor(config.Embeds.Color.Default)
-				.setTitle("Command Help")
-				.setDescription("Here are the avaliable commands.")
-				.setFooter(config.Embeds.Footer.Text, config.Embeds.Footer.Icon);
-			const commandsFiles = fs.readdirSync(path.join(__dirname, './'));
+			const helpEmbed = embed('default', `Command Help`, `Here are the avaliable commands.`)
+			const commandsFiles = fs.readdirSync(path.join(__dirname, '../'));
 			const folders = commandsFiles.filter(command => !command.includes('.js'));
 			for (const folder of folders) {
-				const commandList = fs.readdirSync(path.join(__dirname, '.', folder));
+				const commandList = fs.readdirSync(path.join(__dirname, '../', folder));
 				const commandListFormat = commandList.join(', ').replace(/\.js/g, '');
-				embed.addField(title(folder), `\`\`\`${commandListFormat}\`\`\``, true)
+				helpEmbed.addField(title(folder), `\`\`\`${commandListFormat}\`\`\``, true)
 			}
-			message.channel.send(embed);
+			message.channel.send(helpEmbed);
 		} else {
 			const commands = loadCommands()
 			let allCommands = []
@@ -111,7 +106,7 @@ module.exports = {
 						continue
 					}
 				}
-				message.channel.send(embed('default', `\`${mainCommand}\` Command Help`, `**Description:** ${description}`).addFields(
+				message.channel.send(embed('default', `\`${mainCommand}\` Command Help`, `**Description**\n${description}`).addFields(
 					{ name: 'Usage', value: `\`\`\`${config.Prefix}${mainCommand} ${args}\`\`\``, inline: false },
 					{ name: 'Required Roles & Permissions', value: `\`\`\`${requiredRolesAndPerms}\`\`\``, inline: true },
 					{ name: 'Accessible', value: `\`\`\`${canRun}\`\`\``, inline: true },

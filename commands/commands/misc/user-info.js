@@ -1,13 +1,13 @@
 // Load embed module
-const embed = require('../../modules/embed.js')
+const embed = require('@modules/embed.js')
 
 // Load YAML module
-const loadYAML = require('../../modules/yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 module.exports = {
 	commands: ['user-info', 'userinfo'],
-    expectedArgs: '<user> / none',
+    expectedArgs: '<user / none>',
     maxArgs: 1,
     description: "Get some information about a user or yourself.",
 	callback: (client, message) => {

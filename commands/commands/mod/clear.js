@@ -1,8 +1,8 @@
 // Load embed module
-const embed = require('../../modules/embed.js')
+const embed = require('@modules/embed.js')
 
 // Load YAML module
-const loadYAML = require('../../modules/yaml.js')
+const loadYAML = require('@modules/yaml.js')
 const config = loadYAML('config')
 
 module.exports = {
@@ -11,6 +11,7 @@ module.exports = {
     minArgs: 1,
     maxArgs: 1,
     requiredRoles: ['Mod'],
+    serverOnly: true,
     description: "Clear a certain number of messages at once.",
 	callback: (client, message, arguments) => {
 		if (arguments == 'all') {
