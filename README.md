@@ -1,6 +1,6 @@
 # ARCHIVED REPOSITORY
 
-### https://github.com/Aesthetic-BOT/bot is where releases and development versions will be!
+### https://github.com/aesthetic-org is our new home! Go and check it out!
 
 # Aesthetic BOT
 
